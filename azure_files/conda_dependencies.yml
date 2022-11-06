@@ -1,0 +1,15 @@
+channels:
+- anaconda
+- conda-forge
+dependencies:
+- python=3.6.2
+- pip:
+    - numpy
+    - tensorflow
+    - torch == 1.1.0
+    - scikit-learn
+    - transformers
+    - gunicorn
+    - Flask
+    - inference-schema
+    - opencensus-ext-azure
