@@ -8,6 +8,7 @@ dependencies:
   # You must list azureml-defaults as a pip dependency
   - azureml-defaults>=1.0.45
   - numpy
+  - pandass
   - transformers
   - tensorflow
 channels:
