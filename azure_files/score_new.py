@@ -18,7 +18,7 @@ def init():
     bert_base = transformers.TFBertModel.from_pretrained('onlplab/alephbert-base')
     # model = transformers.TFBertModel.from_pretrained('onlplab/alephbert-base')
     model = tf.keras.models.load_model('../model/alephbert_finetuned_model_v2', custom_objects={'TFBertModel': bert_base},compile=False)
-    df = pd.read_csv('../data/default_sentence_list_utf8.csv')
+    df = pd.read_csv('path_to_csv_file') #pd.read_csv('../data/default_sentence_list_utf8.csv')
     default_list = df['default sentence list']
     labels = ["negative", "positive"]
 
@@ -227,36 +227,8 @@ def run_old(raw_data):
 
             return (most_similar_sentence, similarity_type, max_val)
 
-
-        # default_list = [
-        #     'מה הפעולות שאתה יודע לעשות?',
-        #     'איך אתה מרגיש?',
-        #     'האם עשית משהו מעניין היום?',
-        #     'אני מרגיש טוב',
-        #     'בגיל המבוגר חשוב במיוחד לשמור על הבריאות ולאמץ אורח חיים בריא',
-        #     'מה קרה לך?',
-        #     'על מה אתה מדבר?',
-        #     'מה התחביבים שלך?',
-        #     'מה תרצה ללמוד?',
-        #     'איך פוגשים ומכירים חברים חדשים?',
-        #     'מתי ביקרת אצל הרופא?',
-        #     'מה קראת לאחרונה?',
-        #     'תספר לי על המשפחה שלך',
-        #     'במה עבדת?',
-        #     'אילו בעלי חיים אתה אוהב?',
-        #     'מה אתה אוהב לאכול?',
-        #     'איזו מוזיקה אתה אוהב?',
-        #     'איפה טיילת מחוץ לארץ ?',
-        #     'מה זכרונות ילדות שלך?',
-        #     'איזה חג אתה אוהב לחגוג?',
-        #     'איפה אתה מבלה בטבע?',
-        #     'איפה ביקרת במדינה?',
-        #     'איך אתה מסתדר עם מזג האוויר?',
-        #     'מה המשמעות של השם שלך?',
-        #     'מה היא לדעתך הזדקנות מוצלחת?'
-        # ]
         #--------------------------------------------------------------------------------------------------------
-            
+
         most_similar_sentence, similarity_type, max_val = reference_similarity(raw_data[0],raw_data[1],default_list)
 
         all_vals = []
@@ -339,34 +311,6 @@ def run(raw_data):
                 similarity_type = 1  # to check if the score is above the threshold
 
             return (most_similar_sentence, similarity_type, max_val)
-
-        # default_list = [
-        #     'מה הפעולות שאתה יודע לעשות?',
-        #     'איך אתה מרגיש?',
-        #     'האם עשית משהו מעניין היום?',
-        #     'אני מרגיש טוב',
-        #     'בגיל המבוגר חשוב במיוחד לשמור על הבריאות ולאמץ אורח חיים בריא',
-        #     'מה קרה לך?',
-        #     'על מה אתה מדבר?',
-        #     'מה התחביבים שלך?',
-        #     'מה תרצה ללמוד?',
-        #     'איך פוגשים ומכירים חברים חדשים?',
-        #     'מתי ביקרת אצל הרופא?',
-        #     'מה קראת לאחרונה?',
-        #     'תספר לי על המשפחה שלך',
-        #     'במה עבדת?',
-        #     'אילו בעלי חיים אתה אוהב?',
-        #     'מה אתה אוהב לאכול?',
-        #     'איזו מוזיקה אתה אוהב?',
-        #     'איפה טיילת מחוץ לארץ ?',
-        #     'מה זכרונות ילדות שלך?',
-        #     'איזה חג אתה אוהב לחגוג?',
-        #     'איפה אתה מבלה בטבע?',
-        #     'איפה ביקרת במדינה?',
-        #     'איך אתה מסתדר עם מזג האוויר?',
-        #     'מה המשמעות של השם שלך?',
-        #     'מה היא לדעתך הזדקנות מוצלחת?'
-        # ]
         # --------------------------------------------------------------------------------------------------------
 
         most_similar_sentence, similarity_type, max_val = reference_similarity(raw_data[0], raw_data[1], default_list)

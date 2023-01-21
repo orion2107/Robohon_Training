@@ -15,7 +15,7 @@ def init():
     global default_list
     tokenizer = transformers.BertTokenizerFast.from_pretrained('onlplab/alephbert-base')
     model = transformers.TFBertModel.from_pretrained('onlplab/alephbert-base')
-    df = pd.read_csv('../data/default_sentence_list_utf8.csv')
+    df = pd.read_csv('path_to_csv_file') #pd.read_csv('../data/default_sentence_list_utf8.csv')
     default_list = df['default sentence list']
 
 def run(raw_data):
