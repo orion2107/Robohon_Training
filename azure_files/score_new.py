@@ -18,8 +18,8 @@ def init():
     bert_base = transformers.TFBertModel.from_pretrained('onlplab/alephbert-base')
     # model = transformers.TFBertModel.from_pretrained('onlplab/alephbert-base')
     model = tf.keras.models.load_model('../model/alephbert_finetuned_model_v2', custom_objects={'TFBertModel': bert_base},compile=False)
-    df = pd.read_csv('../data/Default_Sentence_List.csv', delimiter=',')
-    default_list = df.default_sentence
+    df = pd.read_csv('../data/default_sentence_list_utf8.csv')
+    default_list = df['default sentence list']
     labels = ["negative", "positive"]
 
 
