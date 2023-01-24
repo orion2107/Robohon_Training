@@ -28,7 +28,9 @@ def run(raw_data):
 
         ###==============================================================================================
         def reference_similarity(user_sentence, threshold, default_list):
-
+            most_similar_sentence = ""
+            similarity_type = 0
+            current_max_value = 0
             # initialize dictionary that will contain tokenized sentences
             tokens = {'input_ids': [], 'attention_mask': []}
 
@@ -40,9 +42,6 @@ def run(raw_data):
 
             # comparing reference sentence with default list
             for idx in range(len(default_list)):
-                all_score = []
-                most_similar_sentence = ""
-                similarity_type = 0
                 new_tokens = tokenizer.encode_plus(default_list[idx - 1], max_length=128, truncation=True,
                                                    padding='max_length', return_tensors='pt')
                 tokens['input_ids'].append(new_tokens['input_ids'][0])
@@ -76,7 +75,10 @@ def run(raw_data):
                 max_val = max(all_score)
                 item_idx = np.where(all_score == max_val)
                 item_idx = item_idx[0][0]
-                most_similar_sentence = default_list[item_idx]
+
+                if max_val > current_max_value:
+                    current_max_value = max_val
+                    most_similar_sentence = default_list[item_idx]
 
                 if max_val >= threshold:
                     similarity_type = 1  # to check if the score is above the threshold
@@ -84,6 +86,8 @@ def run(raw_data):
 
                 tokens['input_ids'].pop(1)
                 tokens['attention_mask'].pop(1)
+
+            return (most_similar_sentence, similarity_type, current_max_value)
         # --------------------------------------------------------------------------------------------------------
 
         most_similar_sentence, similarity_type, max_val = reference_similarity(raw_data[0], raw_data[1], default_list)
