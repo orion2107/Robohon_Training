@@ -13,14 +13,12 @@ def init():
     global model
     global tokenizer
     global default_list
-    global labels
     tokenizer = transformers.BertTokenizerFast.from_pretrained('onlplab/alephbert-base')
     bert_base = transformers.TFBertModel.from_pretrained('onlplab/alephbert-base')
     # model = transformers.TFBertModel.from_pretrained('onlplab/alephbert-base')
-    model = tf.keras.models.load_model('../model/alephbert_finetuned_model_v2', custom_objects={'TFBertModel': bert_base},compile=False)
-    df = pd.read_csv('path_to_csv_file') #pd.read_csv('../data/default_sentence_list_utf8.csv')
+    model = tf.keras.models.load_model('../model/alephbert_finetuned_model_v2', custom_objects={'TFBertModel': bert_base},compile=False) #need to change model path upon deployment
+    df = pd.read_csv('../data/default_sentence_list_utf8.csv')  # need to change default_list.cdv path upon deployment
     default_list = df['default sentence list']
-    labels = ["negative", "positive"]
 
 def run(raw_data):
     try:
