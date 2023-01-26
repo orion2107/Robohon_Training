@@ -11,3 +11,5 @@ This repository Includes all python code we use in this project:
 3. In the azure_files folder we have all files which we need to deploy to cloud.
 
 4. In the main folder we also have the 'azure_model_deployment_instructions.pdf' file which explains all steps for deploying the code in azure ML cloud service.
+
+5. In the model folder we can put the trained model file used for testing (currently the folder is empty because when we deploy to cloud we upload the model to dedicated storage).
